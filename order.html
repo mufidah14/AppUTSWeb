@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1, h2, p {
+            margin: 0 0 10px 0;
+        }
+        .menu {
+            margin-top: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order</h1>
+        
+        <h2>Makanan</h2>
+        <div class="menu">
+            <div class="menu-item">
+                <span>Nasi Goreng</span>
+                <span>Rp. 15.000</span>
+                <input type="number" id="qtyNasiGoreng" value="0" min="0" onchange="updateTotal()">
+            </div>
+            <div class="menu-item">
+                <span>Mie Goreng</span>
+                <span>Rp. 10.000</span>
+                <input type="number" id="qtyMieGoreng" value="0" min="0" onchange="updateTotal()">
+            </div>
+            <div class="menu-item">
+                <span>Ayam Goreng</span>
+                <span>Rp. 15.000</span>
+                <input type="number" id="qtyAyamGoreng" value="0" min="0" onchange="updateTotal()">
+            </div>
+            <!-- Tambahkan menu makanan lainnya sesuai kebutuhan -->
+        </div>
+        
+        <h2>Minuman</h2>
+        <div class="menu">
+            <div class="menu-item">
+                <span>Es Teh</span>
+                <span>Rp. 5.000</span>
+                <input type="number" id="qtyEsTeh" value="0" min="0" onchange="updateTotal()">
+            </div>
+            <div class="menu-item">
+                <span>Es Jeruk</span>
+                <span>Rp. 7.000</span>
+                <input type="number" id="qtyEsJeruk" value="0" min="0" onchange="updateTotal()">
+            </div>
+            <div class="menu-item">
+                <span>Kopi Hitam</span>
+                <span>Rp. 10.000</span>
+                <input type="number" id="qtyKopiHitam" value="0" min="0" onchange="updateTotal()">
+            </div>
+            <!-- Tambahkan menu minuman lainnya sesuai kebutuhan -->
+        </div>
+
+        <h2>Total</h2>
+        <p>Total Harga: <span id="totalHarga">0</span></p>
+        
+
+
+        <button onclick="submitOrder()">Pesan</button>
+    </div>
+
+    <script>
+        function updateTotal() {
+            let qtyNasiGoreng = document.getElementById('qtyNasiGoreng').value;
+            let qtyMieGoreng = document.getElementById('qtyMieGoreng').value;
+            let qtyAyamGoreng = document.getElementById('qtyAyamGoreng').value;
+            let qtyEsTeh = document.getElementById('qtyEsTeh').value;
+            let qtyEsJeruk = document.getElementById('qtyEsJeruk').value;
+            let qtyKopiHitam = document.getElementById('qtyKopiHitam').value;
+
+            let totalHarga = (parseInt(qtyNasiGoreng) * 15000) +
+                             (parseInt(qtyMieGoreng) * 10000) +
+                             (parseInt(qtyAyamGoreng) * 15000) +
+                             (parseInt(qtyEsTeh) * 5000) +
+                             (parseInt(qtyEsJeruk) * 7000) +
+                             (parseInt(qtyKopiHitam) * 10000);
+
+            document.getElementById('totalHarga').innerText = totalHarga;
+        }
+
+        function submitOrder() {
+            let pesan = '';
+            if (document.getElementById('qtyNasiGoreng').value > 0) {
+                pesan += 'Nasi Goreng x ' + document.getElementById('qtyNasiGoreng').value + '\n';
+            }
+            if (document.getElementById('qtyMieGoreng').value > 0) {
+                pesan += 'Mie Goreng x ' + document.getElementById('qtyMieGoreng').value + '\n';
+            }
+            if (document.getElementById('qtyAyamGoreng').value > 0) {
+                pesan += 'Ayam Goreng x ' + document.getElementById('qtyAyamGoreng').value + '\n';
+            }
+            if (document.getElementById('qtyEsTeh').value > 0) {
+                pesan += 'Es Teh x ' + document.getElementById('qtyEsTeh').value + '\n';
+            }
+            if (document.getElementById('qtyEsJeruk').value > 0) {
+                pesan += 'Es Jeruk x ' + document.getElementById('qtyEsJeruk').value + '\n';
+            }
+            if (document.getElementById('qtyKopiHitam').value > 0) {
+                pesan += 'Kopi Hitam x ' + document.getElementById('qtyKopiHitam').value + '\n';
+            }
+
+            let totalHarga = document.getElementById('totalHarga').innerText;
+            alert('Pesanan Anda:\n\n' + pesan + '\nTotal Harga: Rp. ' + totalHarga);
+        }
+    </script>
+
+    <script>
+        function updateTotal() {
+            let qtyNasiGoreng = document.getElementById('qtyNasiGoreng').value;
+            let qtyMieGoreng = document.getElementById('qtyMieGoreng').value;
+            let qtyAyamGoreng = document.getElementById('qtyAyamGoreng').value;
+            let qtyEsTeh = document.getElementById('qtyEsTeh').value;
+            let qtyEsJeruk = document.getElementById('qtyEsJeruk').value;
+            let qtyKopiHitam = document.getElementById('qtyKopiHitam').value;
+
+            let totalHarga = (parseInt(qtyNasiGoreng) * 15000) +
+                             (parseInt(qtyMieGoreng) * 10000) +
+                             (parseInt(qtyAyamGoreng) * 15000) +
+                             (parseInt(qtyEsTeh) * 5000) +
+                             (parseInt(qtyEsJeruk) * 7000) +
+                             (parseInt(qtyKopiHitam) * 10000);
+
+            document.getElementById('totalHarga').innerText = totalHarga;
+        }
+
+        function submitOrder() {
+            let pesan = '';
+            if (document.getElementById('qtyNasiGoreng').value > 0) {
+                pesan += 'Nasi Goreng x ' + document.getElementById('qtyNasiGoreng').value + '\n';
+            }
+            if (document.getElementById('qtyMieGoreng').value > 0) {
+                pesan += 'Mie Goreng x ' + document.getElementById('qtyMieGoreng').value + '\n';
+            }
+            if (document.getElementById('qtyAyamGoreng').value > 0) {
+                pesan += 'Ayam Goreng x ' + document.getElementById('qtyAyamGoreng').value + '\n';
+            }
+            if (document.getElementById('qtyEsTeh').value > 0) {
+                pesan += 'Es Teh x ' + document.getElementById('qtyEsTeh').value + '\n';
+            }
+            if (document.getElementById('qtyEsJeruk').value > 0) {
+                pesan += 'Es Jeruk x ' + document.getElementById('qtyEsJeruk').value + '\n';
+            }
+            if (document.getElementById('qtyKopiHitam').value > 0) {
+                pesan += 'Kopi Hitam x ' + document.getElementById('qtyKopiHitam').value + '\n';
+            }
+
+            let totalHarga = document.getElementById('totalHarga').innerText;
+            alert('Pesanan Anda:\n\n' + pesan + '\nTotal Harga: Rp. ' + totalHarga);
+        }
